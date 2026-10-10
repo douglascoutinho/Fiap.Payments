@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12112.369 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Payments.Api", "Fiap.Payments.Api\Fiap.Payments.Api.csproj", "{2EEB4AEA-8077-4C8E-B314-079BC92A648F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fiap.Payments.Domain", "Fiap.Payments.Domain\Fiap.Payments.Domain.csproj", "{8653D813-23B7-4867-9ADB-F4AAAAAB9846}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EEB4AEA-8077-4C8E-B314-079BC92A648F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EEB4AEA-8077-4C8E-B314-079BC92A648F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EEB4AEA-8077-4C8E-B314-079BC92A648F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EEB4AEA-8077-4C8E-B314-079BC92A648F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A383ABB-3F65-4A7D-8C4F-5156EE855386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A383ABB-3F65-4A7D-8C4F-5156EE855386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A383ABB-3F65-4A7D-8C4F-5156EE855386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A383ABB-3F65-4A7D-8C4F-5156EE855386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8653D813-23B7-4867-9ADB-F4AAAAAB9846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8653D813-23B7-4867-9ADB-F4AAAAAB9846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8653D813-23B7-4867-9ADB-F4AAAAAB9846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8653D813-23B7-4867-9ADB-F4AAAAAB9846}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E44E6967-3A0D-4F33-8564-51AB515CD317}
+	EndGlobalSection
+EndGlobal

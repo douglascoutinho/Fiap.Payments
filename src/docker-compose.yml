@@ -1,0 +1,49 @@
+x-rabbit-env: &rabbit-env
+  RabbitMQ__HostName: rabbitmq
+  RabbitMQ__Port: 5672
+  RabbitMQ__UserName: admin
+  RabbitMQ__Password: admin1234
+  RabbitMQ__VirtualHost: /
+  
+services:
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin1234
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  api-payments:
+    build:
+      context: .                              # raiz da solução
+      dockerfile: Fiap.Payments.Api/Dockerfile
+    container_name: container-api-payments
+    ports:
+      - "8084:8084"
+    environment:
+      <<: *rabbit-env
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - app_net
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  app_net:
+    driver: bridge
