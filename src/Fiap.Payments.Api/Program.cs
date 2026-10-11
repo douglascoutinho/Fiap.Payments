@@ -101,8 +101,9 @@ builder.Services.AddAuthorization(options =>
   options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
 });
 
-builder.Services.RegisterDependencies(builder.Configuration);
 #endregion
+
+builder.Services.RegisterDependencies(builder.Configuration);
 
 var app = builder.Build();
 
@@ -116,6 +117,11 @@ if (app.Environment.IsDevelopment())
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "Api - Fiap Games v1");
     options.SwaggerEndpoint("/swagger/v2/swagger.json", "Api - Fiap Games v2");
   });
+}
+
+if (!app.Environment.IsDevelopment())
+{
+  app.UseHttpsRedirection();
 }
 
 app.UseHttpsRedirection();

@@ -1,4 +1,7 @@
-﻿using MessageProducer.Services;
+﻿using Fiap.Payments.Domain.Entity;
+using Fiap.Payments.Domain.Services.Event;
+using MessageProducer.Services;
+using System.Diagnostics;
 
 namespace Fiap.Payments.Domain.Services
 {
@@ -11,9 +14,22 @@ namespace Fiap.Payments.Domain.Services
       _rabbitMQ = rabbitMQ;
     }
 
-    public void Processar()
+    public async Task Processar(EventResult<ProcessarPagamentoEvent> result)
     {
-      _rabbitMQ.SendMessageAsync("Pagamento Processado Com Sucesso");
+      var input = new EventResult<ProcessarPagamentoEvent>
+      {
+        Key = result.Key,
+        Event = "PaymentProcessedEvent",
+        Data = new ProcessarPagamentoEvent
+        {
+          IdUsuario = result?.Data?.IdUsuario ?? 0,
+          IdJogo = result?.Data?.IdJogo ?? 0,
+          Preco = result?.Data?.Preco ?? 0,
+          StatusPagamento = SimuladorPagamento.Simular()
+        }
+      };
+
+      await _rabbitMQ.SendMessageAsync(input, "payment-processed-event", "payment-processed-exchange");
     }
   }
 }
