@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-api-deployment
+  labels:
+    app: svc-payments-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svc-payments-api
+  template:
+    metadata:
+      labels:
+        app: svc-payments-api
+    spec:
+      containers:
+        - name: container-payments-api
+          image: douglasloc/src-api-payments:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8084
+          envFrom:
+            - configMapRef:
+               name: configmap-rabbitmq
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://+:8084"
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+            - name: RabbitMQ__Password
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-credentials
+                  key: RABBITMQ_PASSWORD
+          readinessProbe:
+            tcpSocket:
+              port: 8084
+            initialDelaySeconds: 5
+            periodSeconds: 10
