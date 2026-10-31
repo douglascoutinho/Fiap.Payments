@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-payments-api
+  name: payments-api
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8094
       targetPort: 8084
