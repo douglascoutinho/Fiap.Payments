@@ -17,7 +17,7 @@ namespace Fiap.Payments.Api.Services.Extensions
         Password = ValorOuPadrao(section["Password"], "admin1234"),
         VirtualHost = ValorOuPadrao(section["VirtualHost"], "/")
       };
-    }
+    } 
 
     public static string ProcessarMensagemConsole(this EventResult<ProcessarPagamentoEvent> result)
     {
@@ -28,4 +28,4 @@ namespace Fiap.Payments.Api.Services.Extensions
   }
 }
 
-  
+    

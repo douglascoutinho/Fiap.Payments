@@ -23,6 +23,7 @@ namespace Fiap.Payments.Domain.Services
         Data = new ProcessarPagamentoEvent
         {
           IdUsuario = result?.Data?.IdUsuario ?? 0,
+          Email = result?.Data?.Email ?? string.Empty,
           IdJogo = result?.Data?.IdJogo ?? 0,
           Preco = result?.Data?.Preco ?? 0,
           StatusPagamento = SimuladorPagamento.Simular()
